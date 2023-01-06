@@ -1,23 +1,19 @@
 import 'dart:convert';
-
-import 'package:encryption_app/services/decryptservice.dart';
 import 'package:encryption_app/services/encryptionservice.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class DecryptPage extends StatefulWidget {
-  const DecryptPage({super.key});
+class EncryptionScreen extends StatefulWidget {
+  const EncryptionScreen({super.key});
 
   @override
-  State<DecryptPage> createState() => _DecryptPageState();
+  State<EncryptionScreen> createState() => _EncryptionScreenState();
 }
 
-class _DecryptPageState extends State<DecryptPage> {
+class _EncryptionScreenState extends State<EncryptionScreen> {
   TextEditingController mcontroller = TextEditingController();
   TextEditingController pcontroller = TextEditingController();
-  String? decryptedMessage;
+  String? encryptedMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +26,7 @@ class _DecryptPageState extends State<DecryptPage> {
             child: CupertinoTextField(
               controller: mcontroller,
               style: const TextStyle(color: Colors.black),
-              placeholder: 'Enter the message you want to decrypt',
+              placeholder: 'Type the message you want to encrypt',
               placeholderStyle: const TextStyle(color: Colors.grey),
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
               clearButtonMode: OverlayVisibilityMode.editing,
@@ -53,7 +49,7 @@ class _DecryptPageState extends State<DecryptPage> {
             child: CupertinoTextField(
               controller: pcontroller,
               style: const TextStyle(color: Colors.black),
-              placeholder: 'Type the password',
+              placeholder: 'Create a password',
               placeholderStyle: const TextStyle(color: Colors.grey),
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
               clearButtonMode: OverlayVisibilityMode.editing,
@@ -71,17 +67,17 @@ class _DecryptPageState extends State<DecryptPage> {
         CupertinoButton(
             color: Colors.blue,
             child: const Text(
-              'Decrypt',
+              'Encrypt',
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () async {
-              final message = await Decryption.getDecryptedMessage(
+              final message = await Encryption.getEncryptedMessage(
                   mcontroller.text, pcontroller.text);
               setState(() {
-                decryptedMessage = message;
+                encryptedMessage = message;
               });
               print('message: $message');
-            }),
+            })
       ],
     );
   }

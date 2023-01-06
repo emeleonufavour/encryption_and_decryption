@@ -1,11 +1,8 @@
 import 'dart:convert';
-
 import 'package:encryption_app/screens/decryptscreen.dart';
-import 'package:encryption_app/services/encryptionservice.dart';
+import 'package:encryption_app/screens/encryptionscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,85 +29,28 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Column(
         children: [
+          const Center(
+            child: Text('Flip the switch to encrypt or decrypt a message'),
+          ),
           CupertinoSwitch(
             value: _isOn,
             onChanged: (bool value) {
               setState(() {
                 _isOn = value;
               });
-              if (_isOn) {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                    builder: (context) => DecryptPage(),
-                  ),
-                );
-              } else {
-                Navigator.pop(context);
-              }
+              // if (_isOn) {
+              //   Navigator.push(
+              //     context,
+              //     CupertinoPageRoute(
+              //       builder: (context) => DecryptPage(),
+              //     ),
+              //   );
+              // } else {
+              //   Navigator.pop(context);
+              // }
             },
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              child: CupertinoTextField(
-                controller: mcontroller,
-                style: const TextStyle(color: Colors.black),
-                placeholder: 'Type the message you want to encrypt',
-                placeholderStyle: const TextStyle(color: Colors.grey),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
-                clearButtonMode: OverlayVisibilityMode.editing,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 0,
-                      color: CupertinoColors.systemGreen,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          //password input
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              child: CupertinoTextField(
-                controller: pcontroller,
-                style: const TextStyle(color: Colors.black),
-                placeholder: 'Create a password',
-                placeholderStyle: const TextStyle(color: Colors.grey),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
-                clearButtonMode: OverlayVisibilityMode.editing,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 0,
-                      color: CupertinoColors.systemGreen,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          CupertinoButton(
-              color: Colors.blue,
-              child: const Text(
-                'Encrypt',
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () async {
-                final message = await Encryption.getEncryptedMessage(
-                    mcontroller.text, pcontroller.text);
-                setState(() {
-                  encryptedMessage = message;
-                });
-                print('message: $message');
-              })
+          _isOn ? DecryptPage() : EncryptionScreen(),
         ],
       ),
     );
