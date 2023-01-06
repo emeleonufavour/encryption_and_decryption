@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cryptography/cryptography.dart';
 import 'package:hex/hex.dart';
 
@@ -26,5 +28,13 @@ class Decryption {
     List<int> decryptedData =
         await algorithm.decrypt(secretBox, secretKey: secretKey);
     return decryptedData;
+  }
+
+  Future<String> getDecryptedMessage(
+      String encryptedData, String password) async {
+    final List<int> decrypt = await decryptData(encryptedData, password);
+    final String decodedMessage = utf8.decode(decrypt);
+
+    return decodedMessage;
   }
 }
