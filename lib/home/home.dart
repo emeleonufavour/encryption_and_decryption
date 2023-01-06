@@ -83,9 +83,13 @@ class _HomePageState extends State<HomePage> {
                 'Encrypt',
                 style: TextStyle(color: Colors.white),
               ),
-              onPressed: () {
-                Encryption.getEncryptedMessage(
+              onPressed: () async {
+                final message = await Encryption.getEncryptedMessage(
                     mcontroller.text, pcontroller.text);
+                setState(() {
+                  encryptedMessage = message;
+                });
+                print('message: $message');
               })
         ],
       ),
