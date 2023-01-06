@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return CupertinoApp(
       title: 'Flutter Demo',
       theme: CupertinoThemeData(
-          primaryColor: Colors.amber,
+          primaryColor: Colors.purple,
           scaffoldBackgroundColor: Colors.grey[100],
           barBackgroundColor: Colors.grey[100]),
       home: HomePage(),

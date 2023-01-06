@@ -38,16 +38,11 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
               style: const TextStyle(color: Colors.black),
               placeholder: 'Type the message you want to encrypt',
               placeholderStyle: const TextStyle(color: Colors.grey),
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               clearButtonMode: OverlayVisibilityMode.editing,
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 0,
-                    color: CupertinoColors.systemGreen,
-                  ),
-                ),
-              ),
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(25)),
+                  border: Border.all(color: Colors.grey)),
             ),
           ),
         ),
@@ -61,21 +56,16 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
               style: const TextStyle(color: Colors.black),
               placeholder: 'Create a password',
               placeholderStyle: const TextStyle(color: Colors.grey),
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               clearButtonMode: OverlayVisibilityMode.editing,
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 0,
-                    color: CupertinoColors.systemGreen,
-                  ),
-                ),
-              ),
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(25)),
+                  border: Border.all(color: Colors.grey)),
             ),
           ),
         ),
         CupertinoButton(
-            color: Colors.blue,
+            color: Colors.purple,
             child: const Text(
               'Encrypt',
               style: TextStyle(color: Colors.white),
@@ -88,7 +78,6 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                 mcontroller.clear();
                 pcontroller.clear();
               });
-              print('message: $message');
             }),
         const SizedBox(
           height: 50,

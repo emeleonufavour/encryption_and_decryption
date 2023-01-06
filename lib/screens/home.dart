@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
         middle: Text(
-          'Text Encyption',
+          'Text cryptography',
           style: TextStyle(
               fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
         ),
@@ -33,21 +33,12 @@ class _HomePageState extends State<HomePage> {
             child: Text('Flip the switch to encrypt or decrypt a message'),
           ),
           CupertinoSwitch(
+            activeColor: Colors.purple,
             value: _isOn,
             onChanged: (bool value) {
               setState(() {
                 _isOn = value;
               });
-              // if (_isOn) {
-              //   Navigator.push(
-              //     context,
-              //     CupertinoPageRoute(
-              //       builder: (context) => DecryptPage(),
-              //     ),
-              //   );
-              // } else {
-              //   Navigator.pop(context);
-              // }
             },
           ),
           _isOn ? DecryptPage() : EncryptionScreen(),
