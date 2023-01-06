@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:encryption_app/screens/decryptscreen.dart';
 import 'package:encryption_app/services/encryptionservice.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   TextEditingController mcontroller = TextEditingController();
   TextEditingController pcontroller = TextEditingController();
   String? encryptedMessage;
+  bool _isOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,24 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Column(
         children: [
+          CupertinoSwitch(
+            value: _isOn,
+            onChanged: (bool value) {
+              setState(() {
+                _isOn = value;
+              });
+              if (_isOn) {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => DecryptPage(),
+                  ),
+                );
+              } else {
+                Navigator.pop(context);
+              }
+            },
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(

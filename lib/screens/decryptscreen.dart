@@ -93,20 +93,6 @@ class _DecryptPageState extends State<DecryptPage> {
                 });
                 print('message: $message');
               }),
-          Text(
-            'A',
-            style: TextStyle(fontSize: 30, color: Colors.black),
-          ),
-          CupertinoSwitch(
-            value: _isOn,
-            activeColor: CupertinoColors.activeBlue,
-            onChanged: (bool? value) {
-              // This is called when the user toggles the switch.
-              setState(() {
-                _isOn = value ?? false;
-              });
-            },
-          ),
         ],
       ),
     );
