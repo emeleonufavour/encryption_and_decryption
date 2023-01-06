@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:encryption_app/services/encryptionservice.dart';
 import 'package:encryption_app/widgets/dialog.dart';
+import 'package:encryption_app/widgets/inputbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,41 +30,12 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: CupertinoTextField(
-              controller: mcontroller,
-              style: const TextStyle(color: Colors.black),
-              placeholder: 'Type the message you want to encrypt',
-              placeholderStyle: const TextStyle(color: Colors.grey),
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-              clearButtonMode: OverlayVisibilityMode.editing,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(25)),
-                  border: Border.all(color: Colors.grey)),
-            ),
-          ),
-        ),
+        //message input
+        InputBox(
+            message: 'Type the message you want to encrpt',
+            controller: mcontroller),
         //password input
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: CupertinoTextField(
-              controller: pcontroller,
-              style: const TextStyle(color: Colors.black),
-              placeholder: 'Create a password',
-              placeholderStyle: const TextStyle(color: Colors.grey),
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-              clearButtonMode: OverlayVisibilityMode.editing,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(25)),
-                  border: Border.all(color: Colors.grey)),
-            ),
-          ),
-        ),
+        InputBox(message: "Create your password", controller: pcontroller),
         CupertinoButton(
             color: Colors.purple,
             child: const Text(

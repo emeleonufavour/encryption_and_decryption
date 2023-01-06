@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:encryption_app/services/decryptservice.dart';
 import 'package:encryption_app/services/encryptionservice.dart';
+import 'package:encryption_app/widgets/inputbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -33,41 +34,12 @@ class _DecryptPageState extends State<DecryptPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: CupertinoTextField(
-              controller: mcontroller,
-              style: const TextStyle(color: Colors.black),
-              placeholder: 'Enter the message you want to decrypt',
-              placeholderStyle: const TextStyle(color: Colors.grey),
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-              clearButtonMode: OverlayVisibilityMode.editing,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(25)),
-                  border: Border.all(color: Colors.grey)),
-            ),
-          ),
-        ),
+        //enter encrypted message
+        InputBox(
+            message: 'Enter the message you want to decrypt',
+            controller: mcontroller),
         //password input
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: CupertinoTextField(
-              controller: pcontroller,
-              style: const TextStyle(color: Colors.black),
-              placeholder: 'Type the password',
-              placeholderStyle: const TextStyle(color: Colors.grey),
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-              clearButtonMode: OverlayVisibilityMode.editing,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(25)),
-                  border: Border.all(color: Colors.grey)),
-            ),
-          ),
-        ),
+        InputBox(message: 'Type the password', controller: pcontroller),
         CupertinoButton(
             color: Colors.purple,
             child: const Text(
@@ -82,7 +54,6 @@ class _DecryptPageState extends State<DecryptPage> {
                 mcontroller.clear();
                 pcontroller.clear();
               });
-              print('message: $message');
             }),
         const SizedBox(
           height: 50,
