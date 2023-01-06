@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:cryptography/cryptography.dart';
 import 'package:hex/hex.dart';
 
-class EncryptData {
+class Encryption {
   static List<int> getPasswordBytes(String password, int maxBytes) {
     final pBytes = utf8.encode(password).toList();
     final passwordLength = pBytes.length;
@@ -34,5 +34,13 @@ class EncryptData {
 
     String encryptedText = '$hexCodedNonce%$hexCodedCipher%$hexCodedMac';
     return encryptedText;
+  }
+
+  static Future<String> getEncryptedMessage(
+      String message, String password) async {
+    List<int> messageToBytes = utf8.encode(message);
+    final encryptedData = await encryptData(password, messageToBytes);
+
+    return encryptedData;
   }
 }

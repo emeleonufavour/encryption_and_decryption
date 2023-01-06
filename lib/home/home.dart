@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:encryption_app/services/encryptionservice.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -11,6 +14,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController mcontroller = TextEditingController();
+  TextEditingController pcontroller = TextEditingController();
+  String? encryptedMessage;
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -22,24 +29,64 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       child: Column(
-        children: const [
+        children: [
           Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CupertinoTextField(
-              placeholder: 'Enter your name',
-              placeholderStyle: TextStyle(color: Colors.grey),
-              padding: EdgeInsets.symmetric(horizontal: 6, vertical: 12),
-              clearButtonMode: OverlayVisibilityMode.editing,
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 0,
-                    color: CupertinoColors.systemGreen,
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              child: CupertinoTextField(
+                controller: mcontroller,
+                style: const TextStyle(color: Colors.black),
+                placeholder: 'Type the message you want to encrypt',
+                placeholderStyle: const TextStyle(color: Colors.grey),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+                clearButtonMode: OverlayVisibilityMode.editing,
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 0,
+                      color: CupertinoColors.systemGreen,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
+          //password input
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              child: CupertinoTextField(
+                controller: pcontroller,
+                style: const TextStyle(color: Colors.black),
+                placeholder: 'Create a password',
+                placeholderStyle: const TextStyle(color: Colors.grey),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+                clearButtonMode: OverlayVisibilityMode.editing,
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 0,
+                      color: CupertinoColors.systemGreen,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          CupertinoButton(
+              color: Colors.blue,
+              child: const Text(
+                'Encrypt',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () {
+                Encryption.getEncryptedMessage(
+                    mcontroller.text, pcontroller.text);
+              })
         ],
       ),
     );
