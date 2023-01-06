@@ -30,7 +30,7 @@ class Decryption {
     return decryptedData;
   }
 
-  Future<String> getDecryptedMessage(
+  static Future<String> getDecryptedMessage(
       String encryptedData, String password) async {
     final List<int> decrypt = await decryptData(encryptedData, password);
     final String decodedMessage = utf8.decode(decrypt);
