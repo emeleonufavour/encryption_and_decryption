@@ -9,6 +9,7 @@ This is how the application looks like. You can type in a message to see the enc
 
 <img width="424" alt="Screenshot 2023-01-06 at 4 19 47 PM" src="https://user-images.githubusercontent.com/106310497/211042319-1c0612be-ef2e-4151-922b-c1a4a50be239.png">
 
+Don't forget to star🌟 and give a follow if you like it😉
 
 
 A few resources to get you started if this is your first Flutter project:
