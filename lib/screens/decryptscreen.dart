@@ -20,6 +20,14 @@ class _DecryptPageState extends State<DecryptPage> {
   String? decryptedMessage;
 
   @override
+  void dispose() {
+    mcontroller.dispose();
+    pcontroller.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -79,6 +87,8 @@ class _DecryptPageState extends State<DecryptPage> {
                   mcontroller.text, pcontroller.text);
               setState(() {
                 decryptedMessage = message;
+                mcontroller.clear();
+                pcontroller.clear();
               });
               print('message: $message');
             }),

@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:encryption_app/services/encryptionservice.dart';
+import 'package:encryption_app/widgets/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class EncryptionScreen extends StatefulWidget {
   const EncryptionScreen({super.key});
@@ -14,6 +16,14 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
   TextEditingController mcontroller = TextEditingController();
   TextEditingController pcontroller = TextEditingController();
   String? encryptedMessage;
+
+  @override
+  void dispose() {
+    mcontroller.dispose();
+    pcontroller.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +85,36 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                   mcontroller.text, pcontroller.text);
               setState(() {
                 encryptedMessage = message;
+                mcontroller.clear();
+                pcontroller.clear();
               });
               print('message: $message');
-            })
+            }),
+        const SizedBox(
+          height: 50,
+        ),
+        SizedBox(
+          width: (MediaQuery.of(context).size.width) * 0.7,
+          child: GestureDetector(
+              onLongPress: () {
+                Clipboard.setData(ClipboardData(text: encryptedMessage));
+                showCupertinoDialog(
+                    context: context,
+                    builder: ((context) {
+                      return DialogBox();
+                    }));
+              },
+              child: encryptedMessage == null
+                  ? const Text(
+                      'Your encrypted message will go here',
+                      style: TextStyle(color: Colors.grey),
+                      textAlign: TextAlign.center,
+                    )
+                  : Text(
+                      '${encryptedMessage}',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+        )
       ],
     );
   }
